@@ -1,0 +1,128 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "assetName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource ID for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM proxy resource."
+                }
+            ],
+            "description": "An Asset.",
+            "properties": {
+                "properties": {
+                    "description": "The resource properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "alternateId": {
+                            "description": "The alternate ID of the Asset.",
+                            "type": "string"
+                        },
+                        "assetId": {
+                            "description": "The Asset ID.",
+                            "format": "uuid",
+                            "readOnly": true,
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "container": {
+                            "description": "The name of the asset blob container.",
+                            "type": "string"
+                        },
+                        "created": {
+                            "description": "The creation date of the Asset.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "description": {
+                            "description": "The Asset description.",
+                            "type": "string"
+                        },
+                        "lastModified": {
+                            "description": "The last modified date of the Asset.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "storageAccountName": {
+                            "description": "The name of the storage account.",
+                            "type": "string"
+                        },
+                        "storageEncryptionFormat": {
+                            "description": "The Asset encryption format. One of None or MediaStorageEncryption.",
+                            "enum": [
+                                "None",
+                                "MediaStorageClientEncryption"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "AssetStorageEncryptionFormat",
+                                "values": [
+                                    {
+                                        "description": "The Asset does not use client-side storage encryption (this is the only allowed value for new Assets).",
+                                        "value": "None"
+                                    },
+                                    {
+                                        "description": "The Asset is encrypted with Media Services client-side encryption.",
+                                        "value": "MediaStorageClientEncryption"
+                                    }
+                                ]
+                            },
+                            "nullable": false
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

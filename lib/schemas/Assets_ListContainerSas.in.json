@@ -1,0 +1,63 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "assetName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The parameters to the list SAS request.",
+            "properties": {
+                "expiryTime": {
+                    "description": "The SAS URL expiration time.  This must be less than 24 hours from the current time.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "permissions": {
+                    "description": "The permissions to set on the SAS URL.",
+                    "enum": [
+                        "Read",
+                        "ReadWrite",
+                        "ReadWriteDelete"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": true,
+                        "name": "AssetContainerPermission",
+                        "values": [
+                            {
+                                "description": "The SAS URL will allow read access to the container.",
+                                "value": "Read"
+                            },
+                            {
+                                "description": "The SAS URL will allow read and write access to the container.",
+                                "value": "ReadWrite"
+                            },
+                            {
+                                "description": "The SAS URL will allow read, write and delete access to the container.",
+                                "value": "ReadWriteDelete"
+                            }
+                        ]
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

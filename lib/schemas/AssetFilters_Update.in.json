@@ -1,0 +1,216 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "assetName": {
+            "required": true,
+            "type": "string"
+        },
+        "filterName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource ID for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM proxy resource."
+                }
+            ],
+            "description": "An Asset Filter.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The Media Filter properties.",
+                    "properties": {
+                        "firstQuality": {
+                            "description": "The first quality.",
+                            "properties": {
+                                "bitrate": {
+                                    "description": "The first quality bitrate.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "bitrate"
+                            ],
+                            "type": "object"
+                        },
+                        "presentationTimeRange": {
+                            "description": "The presentation time range.",
+                            "properties": {
+                                "endTimestamp": {
+                                    "description": "The absolute end time boundary.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "forceEndTimestamp": {
+                                    "description": "The indicator of forcing exsiting of end time stamp.",
+                                    "type": "boolean"
+                                },
+                                "liveBackoffDuration": {
+                                    "description": "The relative to end right edge.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "presentationWindowDuration": {
+                                    "description": "The relative to end sliding window.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "startTimestamp": {
+                                    "description": "The absolute start time boundary.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "timescale": {
+                                    "description": "The time scale of time stamps.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "tracks": {
+                            "description": "The tracks selection conditions.",
+                            "items": {
+                                "description": "Representing a list of FilterTrackPropertyConditions to select a track.  The filters are combined using a logical AND operation.",
+                                "properties": {
+                                    "trackSelections": {
+                                        "description": "The track selections.",
+                                        "items": {
+                                            "description": "The class to specify one track property condition.",
+                                            "properties": {
+                                                "operation": {
+                                                    "description": "The track property condition operation.",
+                                                    "enum": [
+                                                        "Equal",
+                                                        "NotEqual"
+                                                    ],
+                                                    "type": "string",
+                                                    "x-ms-enum": {
+                                                        "modelAsString": true,
+                                                        "name": "FilterTrackPropertyCompareOperation",
+                                                        "values": [
+                                                            {
+                                                                "description": "The equal operation.",
+                                                                "value": "Equal"
+                                                            },
+                                                            {
+                                                                "description": "The not equal operation.",
+                                                                "value": "NotEqual"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "property": {
+                                                    "description": "The track property type.",
+                                                    "enum": [
+                                                        "Unknown",
+                                                        "Type",
+                                                        "Name",
+                                                        "Language",
+                                                        "FourCC",
+                                                        "Bitrate"
+                                                    ],
+                                                    "type": "string",
+                                                    "x-ms-enum": {
+                                                        "modelAsString": true,
+                                                        "name": "FilterTrackPropertyType",
+                                                        "values": [
+                                                            {
+                                                                "description": "The unknown track property type.",
+                                                                "value": "Unknown"
+                                                            },
+                                                            {
+                                                                "description": "The type.",
+                                                                "value": "Type"
+                                                            },
+                                                            {
+                                                                "description": "The name.",
+                                                                "value": "Name"
+                                                            },
+                                                            {
+                                                                "description": "The language.",
+                                                                "value": "Language"
+                                                            },
+                                                            {
+                                                                "description": "The fourCC.",
+                                                                "value": "FourCC"
+                                                            },
+                                                            {
+                                                                "description": "The bitrate.",
+                                                                "value": "Bitrate"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "value": {
+                                                    "description": "The track proprty value.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "property",
+                                                "value",
+                                                "operation"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "trackSelections"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
